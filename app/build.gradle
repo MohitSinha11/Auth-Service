@@ -8,6 +8,13 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'org.springframework.boot' version '3.5.6'
+
+    // Dependency Management ke liye latest stable version
+    id 'io.spring.dependency-management' version '1.1.7'
+
+    // Yeh toh zaroori hai Java code ke liye
+    id 'java'
 }
 
 repositories {
@@ -15,10 +22,36 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    lombokVersion = '1.18.42'
+}
+
+
 dependencies {
     // Use JUnit test framework.
     testImplementation libs.junit
 
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: '4.1.1'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.modelmapper:modelmapper:3.2.0'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+
+// Lombok Dependencies
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+    testImplementation group: 'org.projectlombok', name: 'lombok', version: "$lombokVersion"
+
+//jwt
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.12.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.12.5'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation libs.junit
     // This dependency is used by the application.
     implementation libs.guava
 }
