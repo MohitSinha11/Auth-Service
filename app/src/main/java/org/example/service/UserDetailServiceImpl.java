@@ -46,12 +46,14 @@ public class UserDetailServiceImpl implements UserDetailsService {
         }
         String userId = UUID.randomUUID().toString();
 
-        UserInfo newUser = UserInfo.builder()
-                .userId(userId)
-                .userName(userInfoDto.getUserName())
-                .password(userInfoDto.getPassword())
-                .roles(new HashSet<>())
-                .build();
+        userRepository.save(
+                new UserInfo(
+                    userId,
+                    userInfoDto.getUserName(),
+                    userInfoDto.getPassword(),
+                    new HashSet<>()
+                )
+        );
         return true;
     }
 }
