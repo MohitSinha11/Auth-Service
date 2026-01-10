@@ -26,5 +26,6 @@ public class UserInfo {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @Builder.Default
     private Set<UserRole> roles = new HashSet<>(); // uper ki dono annotation ispe lag rhi hai
 }
