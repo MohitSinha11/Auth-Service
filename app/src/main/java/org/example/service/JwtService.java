@@ -17,7 +17,7 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    public static final String SECRET = "Vkoo9rO3wzTqM1gH-7xJbPcY5fLd2aE8iR6uS4vG0mCwXyZaQhNbRfPeIuGyKvT";
+    public static final String SECRET = "357638792F423F4428472B4B6250655368566D597133743677397A2443264629";
     /*
         is key ko bahut secure tareeke se store karein. Jaise ki,
         environment variables ($env:JWT_SECRET),

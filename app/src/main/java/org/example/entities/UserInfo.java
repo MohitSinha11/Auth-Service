@@ -17,7 +17,7 @@ public class UserInfo {
     @Id
     @Column(name = "user_id")
     private String userId;
-    private String userName;
+    private String username;
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

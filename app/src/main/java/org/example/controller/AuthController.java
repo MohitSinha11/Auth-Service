@@ -33,8 +33,8 @@ public class AuthController {
             if(Boolean.FALSE.equals(isSignUped)){
                 return new ResponseEntity<>("Already Exist" , HttpStatus.BAD_REQUEST);
             }
-            RefreshToken refreshToken = refreshTokenService.createRefreshToken(userInfoDto.getUserName());
-            String jwtToken = jwtService.GenerateToken(userInfoDto.getUserName());
+            RefreshToken refreshToken = refreshTokenService.createRefreshToken(userInfoDto.getUsername());
+            String jwtToken = jwtService.GenerateToken(userInfoDto.getUsername());
             return new ResponseEntity<>(
                     JwtResponseDTO.builder().
                             accessToken(jwtToken).
@@ -42,8 +42,9 @@ public class AuthController {
                             build() ,
                     HttpStatus.OK);
         }catch (Exception e){
+            e.printStackTrace();
             return new ResponseEntity<>(
-                    "Exception In User Service",
+                    e.getMessage(),
                     HttpStatus.INTERNAL_SERVER_ERROR
             );
         }

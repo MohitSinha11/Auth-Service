@@ -57,7 +57,7 @@ public class TokenController {
                 .map(refreshTokenService::verifyExpiration)
                 .map(RefreshToken::getUserInfo)
                 .map(userInfo -> {
-                    String accessToken = jwtService.GenerateToken(userInfo.getUserName());
+                    String accessToken = jwtService.GenerateToken(userInfo.getUsername());
                     return JwtResponseDTO.builder()
                             .accessToken(accessToken)
                             .token(refreshTokenRequestDto.getToken())

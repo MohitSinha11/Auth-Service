@@ -28,7 +28,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserInfo user = userRepository.findByUserName(username);
+        UserInfo user = userRepository.findByUsername(username);
         if(user == null){
             throw new UsernameNotFoundException("Could not found user...!!");
         }
@@ -36,7 +36,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
     }
 
     public UserInfo checkIfUserAlreadyExists(UserInfoDto userInfoDto){
-        return userRepository.findByUserName(userInfoDto.getUserName());
+        return userRepository.findByUsername(userInfoDto.getUsername());
     }
 
     public Boolean signUpUser(UserInfoDto userInfoDto){
@@ -49,7 +49,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         userRepository.save(
                 new UserInfo(
                     userId,
-                    userInfoDto.getUserName(),
+                    userInfoDto.getUsername(),
                     userInfoDto.getPassword(),
                     new HashSet<>()
                 )
